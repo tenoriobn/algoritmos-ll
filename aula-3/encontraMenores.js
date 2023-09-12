@@ -43,5 +43,43 @@ function trocaLugar(array, de, para) {
     array[de] = elem2;
 }
 
+// função que irá receber a array com os objetos e dentro executara o código que ira dividir o pivô.
+function divideNoPivo(array) {
+    // Aqui é feito uma divisão para pegar o objeto que está no meio da lista
+    // Como tem 11 objetos, o número seria decimal, então o `Math.Floor` vai arredondar para baixo, pegando o 5º elemento
+    let pivo = array[Math.floor(array.length / 2)];
+    console.log(pivo)
+
+    // Em seguida, estou chamando a função `EncontraMenores` e passando a lista e o pivo como argumento.
+    // Essa função contém o código que posiciona o pivô no lugar certo, após os elementos com preços menores.
+    encontraMenores(pivo, array);
+
+    // Essa let vai armazenar valores que representam a posição no array, iniciando em 0
+    // A cada elemento encontrado menor que o pivô será posicionado no indice com o valor armazenado aqui.
+    let valoresMenores = 0;
+
+    // Aqui é a estrutura que vai varrer a lista até `analisando` ultrapassar a qntd de objetos na array
+    for(let analisando = 0; analisando < array.length; analisando++) {
+        // Aqui, a partir do `analisando` que vai representar cada objeto na lista de array
+        // vamos armazenar no atual, para saber qual é o objeto comparado atualmente.
+        let atual = array[analisando];
+
+        // Em seguida é feito a condição para saber se o pivo é menor que o objeto atual
+        // também faz parte da condição que o objeto `atual` seja diferente do objeto utilizado como pivô
+        if(atual.preco <= pivo.preco && atual !== pivo) {
+            // Quando a condição é true, a função `trocaLugar` é chamada, passando a `array`, o indice atual comparada
+            // armazenado em `analisando` e o `valoresMenores` que é o índice onde o valor menor que o pivô
+            // será posicionado, em seguida incrimentando e indo para o próximo indice.
+            trocaLugar(array, analisando, valoresMenores);
+            valoresMenores++
+        }
+    }
+
+    // Aqui vai retornar o array divido.
+    return array
+}
+
+console.log(divideNoPivo(listaLivros));
+
 // Aqui estamos passando o pivo, elemento que ocupa o indice `2` e a array com os elementos.
-console.log(encontraMenores(listaLivros[2], listaLivros));
+// console.log(encontraMenores(listaLivros[2], listaLivros));
