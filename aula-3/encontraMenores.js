@@ -79,7 +79,9 @@ function divideNoPivo(array) {
     return array
 }
 
-console.log(divideNoPivo(listaLivros));
+// console.log(divideNoPivo(listaLivros));
 
 // Aqui estamos passando o pivo, elemento que ocupa o indice `2` e a array com os elementos.
 // console.log(encontraMenores(listaLivros[2], listaLivros));
+
+module.exports = trocaLugar;
